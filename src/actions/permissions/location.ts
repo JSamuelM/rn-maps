@@ -18,15 +18,17 @@ export const requestLocationPermission = async (): Promise<PermissionStatus> => 
     // TODO: return await checkLocationPermission();
   }
 
-  const permissionMapper: Record<RNPermissionStatus, PermissionStatus> = {
-    granted: 'granted',
-    denied: 'denied',
-    blocked: 'blocked',
-    unavailable: 'unavailable',
-    limited: 'limited',
-  };
+  return getPermissionMaper(status);
 
-  return permissionMapper[status] ?? 'unavailable';
+  // const permissionMapper: Record<RNPermissionStatus, PermissionStatus> = {
+  //   granted: 'granted',
+  //   denied: 'denied',
+  //   blocked: 'blocked',
+  //   unavailable: 'unavailable',
+  //   limited: 'limited',
+  // };
+
+  // return permissionMapper[status] ?? 'unavailable';
 }
 
 export const checkLocationPermission = async (): Promise<PermissionStatus> => {
@@ -40,13 +42,27 @@ export const checkLocationPermission = async (): Promise<PermissionStatus> => {
     throw new Error('Unsupported platform');
   }
 
-  const permissionMapper: Record<RNPermissionStatus, PermissionStatus> = {
+  return getPermissionMaper(status);
+
+  // const permissionMapper: Record<RNPermissionStatus, PermissionStatus> = {
+  //   granted: 'granted',
+  //   denied: 'denied',
+  //   blocked: 'blocked',
+  //   unavailable: 'unavailable',
+  //   limited: 'limited',
+  // };
+
+  // return permissionMapper[status] ?? 'unavailable';
+}
+
+export const getPermissionMaper = (status: RNPermissionStatus): PermissionStatus => {
+  const permission: Record<RNPermissionStatus, PermissionStatus> = {
     granted: 'granted',
     denied: 'denied',
     blocked: 'blocked',
     unavailable: 'unavailable',
     limited: 'limited',
-  };
+  }
 
-  return permissionMapper[status] ?? 'unavailable';
+  return permission[status] ?? 'unavailable';
 }
