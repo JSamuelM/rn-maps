@@ -18,7 +18,7 @@ export const PermissionsChecker = ({ children }: PropsWithChildren) => {
         routes: [{ name: 'PermissionsScreen' }],
       });
     }
-  }, []);
+  }, [locationStatus]);
 
   useEffect(() => {
     checkLocationPermission();
